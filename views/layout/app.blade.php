@@ -29,13 +29,15 @@
                 <a class="list_adress contact--link--phone" href="tel:+79039662577">
                     <span class="logo_number">Телефон для связи</span>
                     <span class="contact_number">+7 (903) 966-25-77</span>
-                    <span class="contact_number">@auth()
-				 Привет, @user
-				 @endauth()</span>
-					
                 </a>
             </div> 
-                 
+			@guest
+            <a class="btn btn--modal-form btn--header" data-toggle="modal" data-target="#modal-form" href="/register">Авторизация</a>
+			@endguest
+			@auth
+			@user
+    <a class="btn btn--modal-form btn--header"  href="/cart">Корзина</a>
+		@endauth
                 </div>
             
              </div>
@@ -66,6 +68,7 @@
         
          @yield('content')
                             <footer class="site-footer">
+							@if (!isset($hide))
                                 <section class="section section--main-form">
                                     <div class="container container--full">
                                         <h2 class="block-title">Заказать консультацию</h2>
@@ -81,6 +84,7 @@
                                         </form>
                                     </div>
                                 </section>
+								@endif
                                 <div class="footer-bottom">
                                     <div class="content_center">
                                         <div> Юрист Сажина Татьяна Фёдоровна</div>

@@ -28,7 +28,7 @@ $blade = new BladeOne($views,$cache,BladeOne::MODE_DEBUG);
 
 if (isset($_SESSION['user_id']) && $_SESSION['user_id']){
 	$blade->setAuth($_SESSION['name'],'user');
-}
+} else $blade->setAuth(null);
 
 
 
@@ -57,7 +57,7 @@ $router->get('/buhgalteriya', function () use ($blade) {
 });
 
 $router->get('/kontakty', function () use ($blade) {
-    return $blade->run("kontakty");
+    return $blade->run("kontakty", ["hide" => true]);
 });
 
 $router->get('/cart', function () use ($blade) {
