@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+<link rel="stylesheet" href="arbitrag.css">
   <section class="pg-kontact">
         <div class="container">
             <h1 class="page-kontact">Арбитраж</h1>

@@ -108,5 +108,22 @@
 			return false;
 		})
 		</script>
+			<script>
+		function addCart(name){
+			
+			let data = {cart: [name]}
+			
+		$.ajax({
+  url:         "/addCart",
+  type:        "POST",
+  data:        JSON.stringify(data),
+  contentType: "application/json; charset=utf-8",
+  dataType:    "json",
+  success:     function(){
+    alert("Добавлено в корзину")
+  }
+})
+		}
+	</script>
 </body>
 </html>

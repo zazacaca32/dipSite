@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
- <link rel="stylesheet" href ="/ogd.css">
+ <link rel="stylesheet" href ="ogd.css">
    <section class="pg-kontact">
         <div class="container">
             <h1 class="page-kontact">Общегражданские дела</h1>
@@ -29,7 +29,7 @@
                                     <li>Представительство во всевозможных инстанциях Москвы, Московской области — от 15 000 р.</li>
                                     <li>Полное ведение дела - от 40 000 р.</li>
                                 </ul>
-                                <button onclick="addCart()" class="addToCartBtn">Добавить в корзину</button>
+                                <button onclick="addCart('Работа Юриста')" class="addToCartBtn">Добавить в корзину</button>
                         </div>
                     </div>
                 </div>
@@ -39,22 +39,6 @@
             </div>
         </div>
     </div>
-	<script>
-		function addCart(){
-			
-			let data = {cart: ["Работа Юриста"]}
-			
-		$.ajax({
-  url:         "/addCart",
-  type:        "POST",
-  data:        JSON.stringify(data),
-  contentType: "application/json; charset=utf-8",
-  dataType:    "json",
-  success:     function(){
-    alert("Добавлено в корзину")
-  }
-})
-		}
-	</script>
+
 @endsection
 
