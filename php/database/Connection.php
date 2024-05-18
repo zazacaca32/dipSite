@@ -25,6 +25,7 @@ class Connection
             // $table->string('description');
             // $table->timestamps();
         // });
+		return $capsule;
     }
 }
 

@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 require __DIR__.'/../vendor/autoload.php';
 
@@ -11,6 +11,8 @@ use App\Controllers\CartController;
 use eftec\bladeone\BladeOne;
 use MiladRahimi\PhpRouter\Router;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
+
+use Illuminate\Database\Capsule\Manager as DB;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
@@ -27,7 +29,7 @@ $cache = __DIR__ . '/../compiles';
 $blade = new BladeOne($views,$cache,BladeOne::MODE_DEBUG);
 
 if (isset($_SESSION['user_id']) && $_SESSION['user_id']){
-	$blade->setAuth($_SESSION['name'],'user');
+	$blade->setAuth($_SESSION['name'],'user', ["auth"]);
 } else $blade->setAuth(null);
 
 
@@ -41,19 +43,23 @@ $router->get('/', function () use ($blade) {
 });
 
 $router->get('/obshchegrazhdanskie_dela', function () use ($blade) {
-    return $blade->run("obshchegrazhdanskie_dela");
+	$price = DB::table('price')->where('page', '=', "obshchegrazhdanskie_dela")->get();
+    return $blade->run("obshchegrazhdanskie_dela", ["price" => $price]);
 });
 
 $router->get('/arbitrazh', function () use ($blade) {
-    return $blade->run("arbitrazh");
+	$price = DB::table('price')->where('page', '=', "arbitrazh")->get();
+    return $blade->run("arbitrazh", ["price" => $price]);
 });
 
 $router->get('/srochnyj_vyzov_yurista', function () use ($blade) {
-    return $blade->run("srochnyj_vyzov_yurista");
+	$price = DB::table('price')->where('page', '=', "srochnyj_vyzov_yurista")->get();
+    return $blade->run("srochnyj_vyzov_yurista", ["price" => $price]);
 });
 
 $router->get('/buhgalteriya', function () use ($blade) {
-    return $blade->run("buhgalteriya");
+	$price = DB::table('price')->where('page', '=', "buhgalteriya")->get();
+    return $blade->run("buhgalteriya", ["price" => $price]);
 });
 
 $router->get('/kontakty', function () use ($blade) {

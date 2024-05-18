@@ -3,19 +3,26 @@ namespace App\Controllers;
 
 use Laminas\Diactoros\ServerRequest;
 use MiladRahimi\PhpContainer\Container;
+use Laminas\Diactoros\Response\RedirectResponse;
 
 use DB\Models\User;
 
 class AuthController
 {
 	
+	function __construct() {
+        return new RedirectResponse('/');
+    }
+	
 	public function loginView(ServerRequest $r, Container $container){
 		$blade = $container->get("blade");
+		if (isset($blade->getCurrentPermission()[0]))  return new RedirectResponse('/');
 		return $blade->run("auth.login", ["notify" => self::notify()]);
 	}
 	
 	public function registerView(ServerRequest $r, Container $container){
 		$blade = $container->get("blade");
+		if (isset($blade->getCurrentPermission()[0]))  return new RedirectResponse('/');
 		return $blade->run("auth.register", ["notify" => self::notify()]);
 	}
 	
