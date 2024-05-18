@@ -9,11 +9,7 @@ use DB\Models\User;
 
 class AuthController
 {
-	
-	function __construct() {
-        return new RedirectResponse('/');
-    }
-	
+
 	public function loginView(ServerRequest $r, Container $container){
 		$blade = $container->get("blade");
 		if (isset($blade->getCurrentPermission()[0]))  return new RedirectResponse('/');
