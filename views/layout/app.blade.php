@@ -35,7 +35,7 @@
             <a class="btn btn--modal-form btn--header" data-toggle="modal" data-target="#modal-form" href="/register">Авторизация</a>
 			@endguest
 			@auth
-			@user
+			{{$_SESSION['name']}}
     <a class="btn btn--modal-form btn--header"  href="/cart">Корзина</a>
 		@endauth
                 </div>
